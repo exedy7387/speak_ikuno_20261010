@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>生野署_音声再生</title>
+        <link rel="stylesheet" href="./static/style.css" />
+
+        <!-- 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" /> -->
+    </head>
+    <body>
+        <header class="header" id="header">
+            <div id="company-logo">
+                <img src="./static/image/logo1.png" alt="neibo_logo" />
+            </div>
+            <div id="current-time"></div>
+            <div id="mode-badge">生野署</div>
+        </header>
+
+        <main id="mainContent">
+            <div class="button-container">
+
+                <div class="row row-2">
+                    <button class="play-button pos-1" data-label="1" data-media-id="5e67300a-995d-482e-8ea7-05c13dd67130">
+                        <span class="title">①<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-2" data-label="2" data-media-id="4824c12e-d11f-4672-bd38-074cdecc3608">
+                        <span class="title">②<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-3" data-label="3" data-media-id="77a729d3-7bf1-4d19-a78f-d2c20d1179ff">
+                        <span class="title">③<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-4" data-label="4" data-media-id="4a700885-7c25-4ccc-9954-5b29403b500b">
+                        <span class="title">④<br>マルチ</span>
+                    </button>
+                </div>
+                <div class="row row-5">
+                    <button class="play-button pos-5" data-label="5" data-media-id="09143276-0419-4d9c-849b-36e29118d833">
+                        <span class="title">⑤<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-6" data-label="6" data-media-id="da45d9ad-38f1-4313-b2c9-f2bc530cf8ea">
+                        <span class="title">⑥<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-7" data-label="7" data-media-id="1338b9e3-c360-4328-b380-75127eddd6ad">
+                        <span class="title">⑦<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-8" data-label="8" data-media-id="02ff6499-bccc-478e-ac86-e2e7d78f8878">
+                        <span class="title">⑧<br>マルチ</span>
+                    </button>
+
+                </div>
+                <div class="row ai-answer-row">
+                    <button class="play-button ai-answer-button" data-label="ai-answer-1" data-media-id="423d8645-59f3-4e28-9ca2-51d3574ae960">
+                        <span class="title">AI回答①</span></button>
+                    <button class="play-button ai-answer-button" data-label="ai-answer-2" data-media-id="135d495b-17fb-42e0-b222-852da1737e61">
+                        <span class="title">AI回答②</span></button>
+                    <button class="play-button ai-answer-button" data-label="ai-answer-3" data-media-id="59257df7-13bb-4a11-8ea1-cf1df6093341">
+                        <span class="title">AI回答③</span></button>
+                    <button class="play-button ai-answer-button" data-label="ai-answer-4" data-media-id="1ca39ab9-51eb-4555-82f4-493ddcb75509">
+                        <span class="title">AI回答④</span></button>
+                    <button class="play-button ai-answer-button" data-label="ai-answer-5" data-media-id="e733690d-a89a-4a54-965b-4c414481fcfb">
+                        <span class="title">AI回答⑤</span></button>
+                </div>
+                <!-- <div class="row row-5">
+                    <button class="play-button pos-9" data-label="9" data-media-id="32252c70-5e5d-4217-8890-602982be1c18">
+                        <span class="title">⑨<br>マルチ</span>
+                    </button>
+                    <button class="play-button pos-10" data-label="10" data-media-id="84b18ec4-a655-4227-a4d9-9029c5454bb2">
+                        <span class="title">⑩<br>パワフル</span>
+                    </button>
+                    <button class="play-button pos-11" data-label="11" data-media-id="40a793d7-d201-4bf6-8c93-0f4d15f4c482">
+                        <span class="title">⑪<br>パワフル</span>
+                    </button>
+                    <button class="play-button pos-12" data-label="12" data-media-id="bb821d66-1a78-4edc-9035-f8f5b03298ba">
+                        <span class="title">⑫<br>マルチ</span>
+                    </button>
+                </div> -->
+
+
+                <button class="stop-button pos-stop">再生停止</button>
+                <div class="mode-row">
+                    <button class="control-button mode-button pos-heart-eye" data-mode="heart_eye"><span class="title">目♥</span></button>
+                    <button class="control-button mode-button pos-normal" data-mode="normal"><span class="title">通常</span></button>
+                </div>
+            </div>
+        </main>
+
+        <div id="mediaConfigPopup" class="popup-overlay" style="display: none">
+            <div class="popup-panel">
+                <h2>メディア設定</h2>
+                <div id="mediaConfigList" class="popup-list"></div>
+
+                <div class="popup-actions">
+                    <button id="mediaConfigCancel" class="popup-btn">キャンセル</button>
+                    <button id="mediaConfigSave" class="popup-btn primary">保存</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./static/module/api.js"></script>
+        <script src="./static/module/function.js"></script>
+        <script src="./static/script.js"></script>
+    </body>
+</html>
